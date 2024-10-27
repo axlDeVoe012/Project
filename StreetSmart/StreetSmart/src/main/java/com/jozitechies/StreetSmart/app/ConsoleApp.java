@@ -1,6 +1,7 @@
 package com.jozitechies.StreetSmart.app;
 
 import com.jozitechies.StreetSmart.entities.User;
+import com.jozitechies.StreetSmart.loan.services.UserServices;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.jozitechies.StreetSmart.app;
+package com.jozitechies.StreetSmart.loan.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jozitechies.StreetSmart.entities.User;
