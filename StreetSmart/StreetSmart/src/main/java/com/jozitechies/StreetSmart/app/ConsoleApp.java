@@ -1,82 +1,98 @@
 package com.jozitechies.StreetSmart.app;
 
+import com.jozitechies.StreetSmart.app.UserServices;
 import com.jozitechies.StreetSmart.entities.User;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleApp {
-    public static void main(String[] args) {
-        UserServices userServices = new UserServices();
-        Scanner scanner = new Scanner(System.in);
+    private static UserServices userService = new UserServices();
+    private static Scanner scanner = new Scanner(System.in);
 
+    public static void main(String[] args) throws IOException {
         while (true) {
-            System.out.println("1. Add User");
-            System.out.println("2. List Users");
-            System.out.println("3. Update User");
-            System.out.println("4. Delete User");
+            System.out.println("\nUser Management System");
+            System.out.println("1. List all users");
+            System.out.println("2. Add a new user");
+            System.out.println("3. Update a user");
+            System.out.println("4. Delete a user");
             System.out.println("5. Exit");
             System.out.print("Choose an option: ");
-            int option = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
 
-            switch (option) {
-                case 1: // Add User
-                    User newUser = new User();
-                    System.out.print("Enter name: ");
-                    newUser.setName(scanner.nextLine());
-                    System.out.print("Enter surname: ");
-                    newUser.setSurname(scanner.nextLine());
-                    System.out.print("Enter email: ");
-                    newUser.setEmail(scanner.nextLine());
-                    System.out.print("Enter phone: ");
-                    newUser.setPhone(scanner.nextLine());
-                    System.out.print("Enter password: "); // New password prompt
-                    newUser.setPassword(scanner.nextLine());
-                    userServices.addUser(newUser);
-                    break;
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline left-over
 
-                case 2: // List Users
-                    List<User> users = userServices.getAllUsers();
-                    if (users != null) {
-                        for (User user : users) {
-                            System.out.println(user.getId() + ": " + user.getName() + " " + user.getSurname());
-                        }
-                    }
-                    break;
-
-                case 3: // Update User
-                    System.out.print("Enter user ID to update: ");
-                    Long userIdToUpdate = scanner.nextLong();
-                    scanner.nextLine(); // Consume newline
-                    User userToUpdate = new User();
-                    userToUpdate.setId(userIdToUpdate);
-                    System.out.print("Enter new name: ");
-                    userToUpdate.setName(scanner.nextLine());
-                    System.out.print("Enter new surname: ");
-                    userToUpdate.setSurname(scanner.nextLine());
-                    System.out.print("Enter new email: ");
-                    userToUpdate.setEmail(scanner.nextLine());
-                    System.out.print("Enter new phone: ");
-                    userToUpdate.setPhone(scanner.nextLine());
-                    System.out.print("Enter new password: "); // New password prompt
-                    userToUpdate.setPassword(scanner.nextLine());
-                    userServices.updateUser(userToUpdate);
-                    break;
-
-                case 4: // Delete User
-                    System.out.print("Enter user ID to delete: ");
-                    Long userIdToDelete = scanner.nextLong();
-                    userServices.deleteUser(userIdToDelete);
-                    break;
-
-                case 5: // Exit
-                    scanner.close();
-                    return;
-
-                default:
-                    System.out.println("Invalid option. Please try again.");
+            switch (choice) {
+                case 1 -> listUsers();
+                case 2 -> addUser();
+                case 3 -> updateUser();
+                case 4 -> deleteUser();
+                case 5 -> {
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                }
+                default -> System.out.println("Invalid choice. Please try again.");
             }
         }
     }
+    UserAuthentication auth = new UserAuthentication();
+    boolean isAuthenticated = auth.login("user@example.com", "password123");
+
+        if (isAuthenticated) {
+        System.out.println("Welcome to StreetSmart!");
+    } else {
+        System.out.println("Invalid credentials. Please try again.");
+    }
+
+    private static void listUsers() throws IOException {
+        List<User> users = userService.getAllUsers();
+        if (users != null) {
+            users.forEach(System.out::println);
+        } else {
+            System.out.println("Error fetching users");
+        }
+    }
+
+    private static void addUser() throws IOException {
+        User user = new User();
+        System.out.print("Enter name: ");
+        user.setName(scanner.nextLine());
+        System.out.print("Enter surname: ");
+        user.setSurname(scanner.nextLine());
+        System.out.print("Enter email: ");
+        user.setEmail(scanner.nextLine());
+        System.out.print("Enter phone: ");
+        user.setPhone(scanner.nextLine());
+
+        userService.addUser(user);
+    }
+
+    private static void updateUser() throws IOException {
+        System.out.print("Enter user ID to update: ");
+        Long id = scanner.nextLong();
+        scanner.nextLine(); // Consume newline
+
+        User user = new User();
+        user.setId(id);
+        System.out.print("Enter new name: ");
+        user.setName(scanner.nextLine());
+        System.out.print("Enter new surname: ");
+        user.setSurname(scanner.nextLine());
+        System.out.print("Enter new email: ");
+        user.setEmail(scanner.nextLine());
+        System.out.print("Enter new phone: ");
+        user.setPhone(scanner.nextLine());
+
+        userService.updateUser(user);
+    }
+
+    private static void deleteUser() throws IOException {
+        System.out.print("Enter user ID to delete: ");
+        Long id = scanner.nextLong();
+        userService.deleteUser(id);
+    }
+
+
 }

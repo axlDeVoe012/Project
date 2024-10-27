@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="728e492b-e7fa-4929-a817-74a62fe1bcbc" name="Changes" comment="" />
+    <list default="true" id="728e492b-e7fa-4929-a817-74a62fe1bcbc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/UserAuthentication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/ConsoleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/ConsoleApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/UserServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/UserServices.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,9 +32,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2nzTGXiTFCDHs3hmadjpyHVaiqc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -103,6 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1729974809934</updated>
       <workItem from="1729974810993" duration="10155000" />
+      <workItem from="1730025862497" duration="1270000" />
     </task>
     <servers />
   </component>
@@ -135,16 +144,6 @@
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="3" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/UserServices.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/StreetSmart/src/main/java/com/jozitechies/StreetSmart/app/UserServices.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

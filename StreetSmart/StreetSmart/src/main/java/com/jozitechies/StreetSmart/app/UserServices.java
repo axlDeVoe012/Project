@@ -11,12 +11,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class UserServices {
-    private static final String BASE_URL = "http://localhost:8080/users"; // Base URL updated
+    private static final String BASE_URL = "http://localhost:8080";
 
     // Get all users
     public List<User> getAllUsers() {
         try {
-            URL url = new URL(BASE_URL + "/all");
+            URL url = new URL(BASE_URL + "/users/all");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -26,7 +26,6 @@ public class UserServices {
                         mapper.getTypeFactory().constructCollectionType(List.class, User.class));
             } else {
                 System.out.println("Error: Unable to retrieve users. Response code: " + connection.getResponseCode());
-                System.out.println("Message: " + connection.getResponseMessage()); // Added message for clarity
             }
         } catch (IOException e) {
             System.out.println("Connection failed: " + e.getMessage());
@@ -37,7 +36,7 @@ public class UserServices {
     // Add a new user
     public void addUser(User user) {
         try {
-            URL url = new URL(BASE_URL + "/add");
+            URL url = new URL(BASE_URL + "/addUser");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -53,7 +52,6 @@ public class UserServices {
 
             if (connection.getResponseCode() != 200) {
                 System.out.println("Failed to add user. Response code: " + connection.getResponseCode());
-                System.out.println("Message: " + connection.getResponseMessage());
             } else {
                 System.out.println("User added successfully");
             }
@@ -65,7 +63,7 @@ public class UserServices {
     // Update user
     public void updateUser(User user) {
         try {
-            URL url = new URL(BASE_URL + "/update/" + user.getId());
+            URL url = new URL(BASE_URL + "/updateUser/" + user.getId());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("PUT");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -81,7 +79,6 @@ public class UserServices {
 
             if (connection.getResponseCode() != 200) {
                 System.out.println("Failed to update user. Response code: " + connection.getResponseCode());
-                System.out.println("Message: " + connection.getResponseMessage());
             } else {
                 System.out.println("User updated successfully");
             }
@@ -93,13 +90,12 @@ public class UserServices {
     // Delete user by ID
     public void deleteUser(Long id) {
         try {
-            URL url = new URL(BASE_URL + "/delete/" + id);
+            URL url = new URL(BASE_URL + "/deleteUser/" + id);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("DELETE");
 
             if (connection.getResponseCode() != 200) {
                 System.out.println("Failed to delete user. Response code: " + connection.getResponseCode());
-                System.out.println("Message: " + connection.getResponseMessage());
             } else {
                 System.out.println("User deleted successfully");
             }
