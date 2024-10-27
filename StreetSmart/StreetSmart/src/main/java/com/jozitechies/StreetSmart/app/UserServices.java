@@ -103,4 +103,54 @@ public class UserServices {
             System.out.println("Connection failed: " + e.getMessage());
         }
     }
+
+    // Login user
+    public boolean login(String email, String password) {
+        try {
+            URL url = new URL(BASE_URL + "/login");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // JSON payload with email and password
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonInputString = mapper.writeValueAsString(new LoginRequest(email, password));
+
+            // Write JSON to the output stream
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            // Check response
+            if (connection.getResponseCode() == 200) {
+                System.out.println("Login successful");
+                return true;
+            } else {
+                System.out.println("Login failed. Response code: " + connection.getResponseCode());
+            }
+        } catch (IOException e) {
+            System.out.println("Connection failed: " + e.getMessage());
+        }
+        return false;
+    }
+
+    // Helper class for login request payload
+    private static class LoginRequest {
+        private String email;
+        private String password;
+
+        public LoginRequest(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        // Getters and setters
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+        public String getPassword() { return password; }
+        public void setPassword(String password) { this.password = password; }
+    }
 }
+
